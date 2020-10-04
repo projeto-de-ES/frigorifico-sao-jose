@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Alunos: Carlos André de Ameilda Cavalcante, Maria Thais de Melo Costa, Victor Francisco Mendes de Matos
+        
+Projeto: Sistema para o Frígorifico São José, do proprietário Sergio Melo, cidadão de Capoeiras PE.
+
+[Link do Heroku](https://fierce-taiga-25653.herokuapp.com/)         
