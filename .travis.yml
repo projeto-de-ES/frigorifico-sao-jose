@@ -11,9 +11,8 @@ install:
   - yarn
 
 script:
-  - bundle exec rails db:drop:_unsafe RAILS_ENV=test
-  - bundle exec rails db:create RAILS_ENV=test
-  - bundle exec rails db:migrate RAILS_ENV=test
+  - bundle exec rake db:setup
+  - bundle exec rake db:migrate RAILS_ENV=test
   - bundle exec rails webpacker:compile
 #  - ruby -S bundle exec cucumber --profile default
 
