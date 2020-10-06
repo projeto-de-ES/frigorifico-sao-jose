@@ -1,0 +1,10 @@
+<%= form_with(url: recebimento_produto_path, method: :post, local: true) do |form| %>
+  <div class="field">
+    <%= form.label "recebimento" %>
+    <%= form.text_field "recebimento" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
