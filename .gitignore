@@ -37,5 +37,5 @@ yarn-debug.log*
 
 /Gemfile
 /Gemfile.lock
-test/test_helper.rb
+/test/test_helper.rb
 .idea/
