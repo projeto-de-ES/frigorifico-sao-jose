@@ -1,0 +1,38 @@
+<%= form_with(model: produto, local: true) do |form| %>
+  <% if produto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
+
+      <ul>
+        <% produto.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :categoria %>
+    <%= select('produto', :categoria, ['Bovino', 'Suino', 'caprino', 'Aves', 'Peixe'],{include: true}) %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :qtd_estoque %>
+    <%= form.text_field :qtd_estoque %>
+  </div>
+
+  <div class="field">
+    <%= form.label :preco %>
+    <%= form.text_field :preco, :placeholder => "Por quilo." %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
