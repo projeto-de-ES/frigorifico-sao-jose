@@ -34,8 +34,6 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.idéia/
 
-/Gemfile
-/Gemfile.lock
-/test/test_helper.rb
-.idea/
+
