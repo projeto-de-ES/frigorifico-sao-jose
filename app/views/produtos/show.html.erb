@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-sm-4">
+    <strong>Nome:</strong>
+    <p>
+      <%= @produto.nome %>
+    </p>
+  </div>
+  <div class="col-sm-4">
+    <strong>Categoria:</strong>
+    <p>
+      <%= @produto.categoria %>
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <strong>Qtd estoque:</strong>
+    <p>
+      <%= @produto.qtd_estoque %>
+    </p>
+  </div>
+  <div class="col-sm-4">
+    <strong>Preco:</strong>
+    <p>
+      <%= @produto.preco %>
+    </p>
+  </div>
+</div>
+
+<%= link_to 'Editar', edit_produto_path(@produto) %> |
+<%= link_to 'Voltar', produtos_path %>
