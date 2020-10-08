@@ -11,28 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
-  </div>
+  <div class="row form-group">
+    <div class="col-sm-4">
+      <%= form.label :nome %>
+      <%= form.text_field :nome, class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :categoria %>
-    <%= select('produto', :categoria, ['Bovino', 'Suino', 'caprino', 'Aves', 'Peixe'],{include: true}) %>
+    <div class="col-sm-4">
+      <%= form.label :categoria %>
+      <%= select('produto', :categoria, ['Bovino', 'Suino', 'caprino', 'Aves', 'Peixe'],{include:true}, {:class => 'form-control'}) %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-4">
+      <%= form.label :qtd_estoque %>
+      <%= form.text_field :qtd_estoque, class: "form-control" %>
+    </div>
+
+    <div class="col-sm-4">
+      <%= form.label :preco %>
+      <%= form.text_field :preco, :placeholder => "Por Kg.", class: "form-control", type: "number", min: "0.00" %>
     </div>
   </div>
 
-  <div class="field">
-    <%= form.label :qtd_estoque %>
-    <%= form.text_field :qtd_estoque %>
-  </div>
-
-  <div class="field">
-    <%= form.label :preco %>
-    <%= form.text_field :preco, :placeholder => "Por quilo." %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= form.submit "Salvar", id: "cadastrar_reclamacao",class: 'btn btn-success', style: "margin-top: 10px; margin-bottom: 10px;"%>
+    </div>
   </div>
 <% end %>
