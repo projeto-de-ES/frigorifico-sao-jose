@@ -67,16 +67,17 @@ class ProdutosController < ApplicationController
   end
 
   def recebimento
-
+    @produto = Produto.find(params[:id])
   end
 
   def recebimentoAtualiza
     @produto = Produto.find(params[:id])
     if Produto.update(@produto.id, :qtd_estoque => @produto[:qtd_estoque].to_f + params[:recebimento].to_f)
-      redirect_to produto_path
+      redirect_to produto_path, notice: 'Recebimento de produto efetuado com sucesso.'
     else
       render recebimento_produto_path
     end
+
   end
 
   private

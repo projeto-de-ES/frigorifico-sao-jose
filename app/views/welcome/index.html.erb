@@ -1,4 +1,51 @@
-<h2>Hello World</h2>
-<p>
-  The time is now: <%= Time.now %>
-</p>
+<div class="row">
+    <div class="col-sm-6" style="top: 4rem;">
+        <p style="text-align: justify; text-">
+            <strong>Sobre:</strong>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+            Why do we use it?
+            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+        </p>
+    </div>
+    <div class="col-sm-6" style="top: 4rem;">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <%= image_tag image_url('bolvino.jpg'), class: "d-block w-100", alt: "Boivinos", width: "1000px", height:"400px"%>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 style="font-weight: bolder;">Bolvina</h5>
+                    <p>Carne bolvina de máxima qualidade de matadouros de confiança, escolha entre diversos cortes.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <%= image_tag image_url('caprinos.jpg'), class: "d-block w-100", alt: "Boivinos", width: "1000px;", height:"400px"%>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 style="font-weight: bolder;">Caprina</h5>
+                    <p>Carne caprina para fazer o tradicional almoço de domingo.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <%= image_tag image_url('suinos.jpg'), class: "d-block w-100", alt: "Boivinos", width: "1000px;", height:"400px"%>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 style="color: black; font-weight: bolder;">Suina</h5>
+                    <p style="color: black;">Carne suina que produz a melhor feijoada.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        </div>
+    </div>
+</div>
