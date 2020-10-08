@@ -1,5 +1,7 @@
+<p id="notice"><%= notice %></p>
+<h2><%= @produto.nome %></h2>
+
 <%= form_with(url: recebimento_produto_path, method: :post, local: true) do |form| %>
- <div style="position: relative; top: 50px;">
    <div class="row form-group">
     <div class="col-sm-6">
       <%= form.label "recebimento" %>
