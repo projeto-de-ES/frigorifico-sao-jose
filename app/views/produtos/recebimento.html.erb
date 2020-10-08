@@ -2,12 +2,17 @@
 <h2><%= @produto.nome %></h2>
 
 <%= form_with(url: recebimento_produto_path, method: :post, local: true) do |form| %>
-  <div class="field">
-    <%= form.label "recebimento" %>
-    <%= form.text_field "recebimento", :type => "number" %>
+   <div class="row form-group">
+    <div class="col-sm-6">
+      <%= form.label "recebimento" %>
+      <%= form.text_field "recebimento", class: "form-control" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= form.submit "Salvar", class: "btn btn-success" %>
+    </div>
   </div>
+ </div>
 <% end %>
