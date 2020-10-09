@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Frigorifico são josé</title>
+    <title>Frigorifico São José</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,35 +15,40 @@
     <nav class="navbar navbar-dark navbar-light" style="background-color: #1d7de5;">
       <div class="container">
           <a class="navbar-brand" href="/">
-            Frigorifico são josé
+            Frigorifico São José
           </a>
           <button class="navbar-toggler" type="button" style="border-color:white;" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         <div class="collapse navbar-collapse " id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: white;">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: white;">Cadastrar-se</a>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Produtos', produtos_path, class: "nav-link", style: "color: white;" %>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: white;">Venda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: white;">Abrir caixa</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: white;">Fechar caixa</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: white;">Sair</a>
-            </li>   
-          </ul>
+          <%if Usuario.checar_usuario_logado ==  false%>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <%= link_to 'Login', logins_path, class: "nav-link", style: "color: white;" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Cadastre-se', new_usuario_path, class: "nav-link", style: "color: white;" %>
+              </li>
+            </ul>
+          <%else %>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <%= link_to 'Produtos', produtos_path, class: "nav-link", style: "color: white;" %>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: white;">Venda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: white;">Abrir caixa</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: white;">Fechar caixa</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Sair', logins_destroy_path, method: :delete, class: "nav-link", style: "color: white;" %>
+              </li>
+            </ul>
+          <%end %>
         </div>
       </div>
     </nav>

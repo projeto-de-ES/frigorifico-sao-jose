@@ -37,3 +37,8 @@ yarn-debug.log*
 .idéia/
 
 
+
+Gemfile
+Gemfile.lock
+test/test_helper.rb
+.idea/

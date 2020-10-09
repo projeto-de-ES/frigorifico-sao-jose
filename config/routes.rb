@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :usuarios
+  resources :logins
+  get 'logins/index'
+  get 'logins/destroy'
   resources :produtos do
     member do
       get :recebimento
