@@ -14,6 +14,7 @@ script:
   - bundle exec rake db:setup
   - bundle exec rake db:migrate RAILS_ENV=test
   - bundle exec rails webpacker:compile
+  - bundle exec rails test test/models/produto_test.rb
 #  - ruby -S bundle exec cucumber --profile default
 
 services:
