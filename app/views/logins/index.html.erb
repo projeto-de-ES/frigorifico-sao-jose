@@ -10,7 +10,7 @@
     <%= text_field_tag :senha, nil, id:"senha", type:"password", placeholder:"Senha" %>
   </label>
   <br />
-  <button class="actions" id="submit" type="submit">Entrar</button>
+  <%= submit_tag 'entrar' %>
 <%end%>
 <br/>
 <%= link_to 'Inicio', root_path %>
