@@ -3,14 +3,14 @@
 <%= form_with scope: :logins, url:logins_path, local:true do%>
 <br/>
   <label>Login:
-    <%= text_field_tag :login, nil, id:"login", placeholder:"Login" %>
+    <%= text_field_tag :login, nil, id:"login", placeholder:"Login", id:"loginlogin"%>
   </label>
   <br />
   <label>Senha:
-    <%= text_field_tag :senha, nil, id:"senha", type:"password", placeholder:"Senha" %>
+    <%= text_field_tag :senha, nil, id:"senha", type:"password", placeholder:"Senha", id:"senhalogin" %>
   </label>
   <br />
-  <button class="actions" id="submit" type="submit">Entrar</button>
+  <%= submit_tag 'entrar' %>
 <%end%>
 <br/>
 <%= link_to 'Inicio', root_path %>
