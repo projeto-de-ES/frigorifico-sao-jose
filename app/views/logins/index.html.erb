@@ -1,3 +1,8 @@
+<% if @mensagens.length >= 1 %>
+  <% @mensagens.each do |mensagem| %>
+    <p><%= mensagem %></p>
+  <% end %>
+<% end %>
 <p id="notice"><%= notice %></p>
 <body>
 <%= form_with scope: :logins, url:logins_path, local:true do%>

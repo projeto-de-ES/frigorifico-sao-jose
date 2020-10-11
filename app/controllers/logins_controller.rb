@@ -1,6 +1,7 @@
 class LoginsController < ApplicationController
 
   def index
+    @mensagens = []
   end
 
   def create
@@ -10,10 +11,12 @@ class LoginsController < ApplicationController
     aux = buscarLogin(login,senha)
 
     if aux.nil?
+      mensagem = ["Login ou senha não encontrado."]
+      @mensagens = mensagem
       redirect_to logins_path
     else
       Usuario.set_usuario(aux)
-      redirect_to root_path
+      redirect_to root_path, notice: "Usuário logado com sucesso!"
     end
 
   end
