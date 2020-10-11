@@ -5,25 +5,25 @@ class Usuario < ApplicationRecord
 
 
 private
-@@is_logado = false
+@is_logado = false
 
 private
-@@logado = nil
+@logado = nil
 
 def self.get_usuario
-  @@logado
+  @logado
 end
 
 def self.set_usuario(usuario)
-  @@logado = usuario
-  if @@logado.nil?
-    @@is_logado = false
+  @logado = usuario
+  if @logado.nil?
+    @is_logado = false
   else
-    @@is_logado = true
+    @is_logado = true
   end
 end
 
 def self.checar_usuario_logado
-  @@is_logado
+  @is_logado
 end
 end
