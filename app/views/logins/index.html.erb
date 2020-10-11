@@ -1,16 +1,27 @@
+<% if @mensagens.length >= 1 %>
+  <% @mensagens.each do |mensagem| %>
+    <p><%= mensagem %></p>
+  <% end %>
+<% end %>
 <p id="notice"><%= notice %></p>
 <body>
 <%= form_with scope: :logins, url:logins_path, local:true do%>
 <br/>
-  <label>Login:
-    <%= text_field_tag :login, nil, id:"login", placeholder:"Login" %>
-  </label>
-  <br />
-  <label>Senha:
-    <%= text_field_tag :senha, nil, id:"senha", type:"password", placeholder:"Senha" %>
-  </label>
-  <br />
-  <button class="actions" id="submit" type="submit">Entrar</button>
+  <div class="row form-group">
+    <div class="col-sm-4">
+      <label>Login:
+        <%= text_field_tag :login, nil, id:"login", placeholder:"Login", class: "form-control" %>
+      </label>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-sm-4">
+      <label>Senha:
+        <%= text_field_tag :senha, nil, id:"senha", type:"password", placeholder:"Senha", class: "form-control" %>
+      </label>
+   </div>
+  </div>
+  <%= submit_tag 'entrar' %>
 <%end%>
 <br/>
 <%= link_to 'Inicio', root_path %>

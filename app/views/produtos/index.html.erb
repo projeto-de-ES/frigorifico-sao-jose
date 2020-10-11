@@ -33,10 +33,10 @@
         <td><%= produto.categoria %></td>
         <td><%= produto.qtd_estoque %></td>
         <td><%= produto.preco %></td>
-        <td><%= link_to 'Visualizar', produto %></td>
-        <td><%= link_to 'Editar', edit_produto_path(produto) %></td>
-        <td><%= link_to 'Deletar', produto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Recebimento', recebimento_produto_path(produto) %></td>
+        <td><%= link_to 'Visualizar', produto , id: "v-#{produto.nome}"%></td>
+        <td><%= link_to 'Editar', edit_produto_path(produto), id: "e-#{produto.nome}" %></td>
+        <td><%= link_to 'Deletar', produto, method: :delete, data: { confirm: 'Você deseja realmente excluir este produto?' } , id: "d-#{produto.nome}"%></td>
+        <td><%= link_to 'Recebimento', recebimento_produto_path(produto), id: "r-#{produto.nome}" %></td>
       </tr>
     <% end %>
   </tbody>
