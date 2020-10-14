@@ -28,7 +28,7 @@ class VendasController < ApplicationController
 
     respond_to do |format|
       if @venda.save
-        format.html { redirect_to @venda, notice: 'Venda was successfully created.' }
+        format.html { redirect_to new_venda_produto_venda_path(@venda), notice: 'Venda was successfully created.' }
         format.json { render :show, status: :created, location: @venda }
       else
         format.html { render :new }

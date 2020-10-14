@@ -20,9 +20,9 @@
         <td><%= produto_venda.venda_id %></td>
         <td><%= produto_venda.qtd_produtos %></td>
         <td><%= produto_venda.valor %></td>
-        <td><%= link_to 'Show', produto_venda %></td>
-        <td><%= link_to 'Edit', edit_produto_venda_path(produto_venda) %></td>
-        <td><%= link_to 'Destroy', produto_venda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show venda', [@venda] %></td>
+        <td><%= link_to 'Edit produto venda', edit_venda_produto_venda_path(@venda, produto_venda) %></td>
+        <td><%= link_to 'Destroy produto venda',[@venda, produto_venda ], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Produto Venda', new_produto_venda_path %>
+<%= link_to 'New Produto Venda', new_venda_produto_venda_path(@venda) %>

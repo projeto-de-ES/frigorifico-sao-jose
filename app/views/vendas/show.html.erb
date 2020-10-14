@@ -5,5 +5,15 @@
   <%= @venda.valor %>
 </p>
 
+<h2>Produtos da venda</h2>
+<% for produto_venda in @venda.produto_vendas %>
+  <ul>
+    <li><%= produto_venda.produto.nome %></li>
+    <li><%= produto_venda.qtd_produtos %></li>
+    <li><%= produto_venda.valor %></li>
+  </ul>
+<% end %>
+
 <%= link_to 'Edit', edit_venda_path(@venda) %> |
 <%= link_to 'Back', vendas_path %>
+<%= link_to 'Add Prod', venda_produto_vendas_path(@venda) %> |
