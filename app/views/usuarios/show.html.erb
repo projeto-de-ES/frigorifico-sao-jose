@@ -1,18 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @usuario.nome  %>
-</p>
+<div class="row form-group">
+  <div class="col-sm-4">
+      <strong>Nome:</strong>
+      <input type="text" class="form-control" disabled value="<%=@usuario.nome%>">
+  </div>
+  <div class="col-sm-4">
+    <strong>Login:</strong>
+    <input type="text" class="form-control" disabled value="<%= @usuario.login %>">
+  </div>
+</div>
 
-<p>
-  <strong>Login:</strong>
-  <%= @usuario.login %>
-</p>
-
-<p>
-  <strong>Senha:</strong>
-  <%= @usuario.senha %>
-</p>
+<div class="row form-group">
+  <div class="col-sm-4">
+    <strong>Senha:</strong>
+    <input id="password" type="password" class="form-control" disabled value="<%= @usuario.senha %>">
+  </div>
+  <div>
+    <%= image_tag image_url('icones/visualizar.png'), id:"visualizar_senha", class: "d-block w-100", alt: "visualizar-senha", style:"max-width:25px; position:relative; top:30px;", height:"auto"%>
+  </div>
+</div>
 
 <%= link_to 'Voltar', root_path %>
