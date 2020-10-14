@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :produto_vendas
+  resources :vendas
   resources :usuarios
   resources :logins
   get 'logins/index'

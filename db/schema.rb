@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_011506) do
+ActiveRecord::Schema.define(version: 2020_10_14_152510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "produto_vendas", force: :cascade do |t|
+    t.bigint "produto_id", null: false
+    t.bigint "venda_id", null: false
+    t.float "qtd_produtos"
+    t.float "valor"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["produto_id"], name: "index_produto_vendas_on_produto_id"
+    t.index ["venda_id"], name: "index_produto_vendas_on_venda_id"
+  end
 
   create_table "produtos", force: :cascade do |t|
     t.string "nome"
@@ -32,4 +43,12 @@ ActiveRecord::Schema.define(version: 2020_10_09_011506) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "vendas", force: :cascade do |t|
+    t.float "valor"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "produto_vendas", "produtos"
+  add_foreign_key "produto_vendas", "vendas"
 end
