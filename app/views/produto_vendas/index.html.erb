@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Produto Vendas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Venda</th>
+      <th>Qtd produtos</th>
+      <th>Valor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @produto_vendas.each do |produto_venda| %>
+      <tr>
+        <td><%= produto_venda.produto_id %></td>
+        <td><%= produto_venda.venda_id %></td>
+        <td><%= produto_venda.qtd_produtos %></td>
+        <td><%= produto_venda.valor %></td>
+        <td><%= link_to 'Show', produto_venda %></td>
+        <td><%= link_to 'Edit', edit_produto_venda_path(produto_venda) %></td>
+        <td><%= link_to 'Destroy', produto_venda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Produto Venda', new_produto_venda_path %>
