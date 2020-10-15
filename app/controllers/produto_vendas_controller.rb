@@ -26,18 +26,18 @@ class ProdutoVendasController < ApplicationController
   # POST /produto_vendas.json
   def create
     @produto_venda = @venda.produto_vendas.build(produto_venda_params)
-    respond_to do |format|
-      if @produto_venda.save
-        ProdutoVenda.update(@produto_venda.id, :valor => @produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f )
-        Venda.update(@venda.id, :valor => @venda[:valor].to_f + (@produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f))
-        Produto.update(@produto_venda.produto_id, :qtd_estoque => @produto_venda.produto.qtd_estoque - @produto_venda[:qtd_produtos].to_f)
-        format.html { redirect_to @venda, notice: 'Produto adicionado com sucesso.' }
-        format.json { render :show, status: :created, location: @produto_venda }
-      else
-        format.html { render :new }
-        format.json { render json: @produto_venda.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @produto_venda.save
+          ProdutoVenda.update(@produto_venda.id, :valor => @produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f )
+          Venda.update(@venda.id, :valor => @venda[:valor].to_f + (@produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f))
+          Produto.update(@produto_venda.produto_id, :qtd_estoque => @produto_venda.produto.qtd_estoque - @produto_venda[:qtd_produtos].to_f)
+          format.html { redirect_to @venda, notice: 'Produto adicionado com sucesso.' }
+          format.json { render :show, status: :created, location: @produto_venda }
+        else
+          format.html { render :new }
+          format.json { render json: @produto_venda.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # PATCH/PUT /produto_vendas/1

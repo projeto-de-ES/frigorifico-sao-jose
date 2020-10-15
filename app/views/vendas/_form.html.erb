@@ -17,6 +17,9 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "salvar", id: "clicar"%>
   </div>
 <% end %>
+<script>
+    $('#clicar').trigger('click');
+</script>
