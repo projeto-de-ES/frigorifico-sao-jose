@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :vendas do
     resources :produto_vendas
+    member do
+      get :finalizarVenda
+    end
   end
   resources :usuarios
   resources :logins

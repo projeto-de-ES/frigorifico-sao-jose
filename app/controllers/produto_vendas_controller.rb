@@ -16,6 +16,14 @@ class ProdutoVendasController < ApplicationController
   # GET /produto_vendas/new
   def new
     @produto_venda = @venda.produto_vendas.build
+    @p = Produto.all
+    parcial = [2]
+    @produtos = []
+    @p.each do |pp|
+      parcial[0] = pp.nome
+      parcial[1] = pp.id
+      @produtos.push([parcial[0], parcial[1]])
+    end
   end
 
   # GET /produto_vendas/1/edit
@@ -30,7 +38,6 @@ class ProdutoVendasController < ApplicationController
         if @produto_venda.save
           ProdutoVenda.update(@produto_venda.id, :valor => @produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f )
           Venda.update(@venda.id, :valor => @venda[:valor].to_f + (@produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f))
-          Produto.update(@produto_venda.produto_id, :qtd_estoque => @produto_venda.produto.qtd_estoque - @produto_venda[:qtd_produtos].to_f)
           format.html { redirect_to @venda, notice: 'Produto adicionado com sucesso.' }
           format.json { render :show, status: :created, location: @produto_venda }
         else

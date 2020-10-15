@@ -71,6 +71,14 @@ class VendasController < ApplicationController
     end
   end
 
+  def finalizarVenda
+    @venda = Venda.find(params[:id])
+    @venda.produto_vendas.each do |produto_venda|
+      Produto.update(produto_venda.produto_id, :qtd_estoque => produto_venda.produto.qtd_estoque - produto_venda[:qtd_produtos].to_f)
+    end
+    redirect_to root_path, notice: "Venda finalizada com sucesso."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_venda
