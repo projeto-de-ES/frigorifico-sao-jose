@@ -40,10 +40,10 @@
                 <a class="nav-link" href="#" style="color: white;">Venda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" style="color: white;">Abrir caixa</a>
+                <%= link_to "Abrir caixa", caixa_abrir_usuario_url(@usuario.id), class: "nav-link", style: "color: white;" %>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" style="color: white;">Fechar caixa</a>
+                <%= link_to "Fechar caixa",  caixa_fechar_usuario_url(@usuario.id), class: "nav-link", style: "color: white;" %>
               </li>
               <li class="nav-item">
                 <%= link_to "#{@usuario.login}", "/usuarios/#{@usuario.id}", class: "nav-link", style: "color: white;" %>

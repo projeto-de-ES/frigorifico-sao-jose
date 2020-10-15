@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :usuarios
+  resources :usuarios do 
+    member do 
+      get   'caixa/abrir'
+      post  'caixa/abrir', to: "caixa#abrirCaixa"
+      get   'caixa/fechar'
+      post  'caixa/fechar', to: "caixa#fecharCaixa"
+    end
+  end
   resources :logins
   get 'logins/index'
   get 'logins/destroy'
