@@ -28,7 +28,7 @@ class VendasController < ApplicationController
 
     respond_to do |format|
       if @venda.save
-        format.html { redirect_to new_venda_produto_venda_path(@venda), notice: 'Venda was successfully created.' }
+        format.html { redirect_to @venda, notice: 'Venda was successfully created.' }
         format.json { render :show, status: :created, location: @venda }
       else
         format.html { render :new }
@@ -54,9 +54,12 @@ class VendasController < ApplicationController
   # DELETE /vendas/1
   # DELETE /vendas/1.json
   def destroy
+    for produto_venda in @venda.produto_vendas
+      produto_venda.destroy
+    end
     @venda.destroy
     respond_to do |format|
-      format.html { redirect_to vendas_url, notice: 'Venda was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Venda was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

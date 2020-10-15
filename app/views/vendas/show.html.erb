@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Valor:</strong>
+  <strong>Valor Total:</strong>
   <%= @venda.valor %>
 </p>
 
@@ -9,11 +9,13 @@
 <% for produto_venda in @venda.produto_vendas %>
   <ul>
     <li><%= produto_venda.produto.nome %></li>
-    <li><%= produto_venda.qtd_produtos %></li>
-    <li><%= produto_venda.valor %></li>
+    <li>Quantidade: <%= produto_venda.qtd_produtos %></li>
+    <li>valor: <%= produto_venda.valor %></li>
+    <td><%= link_to 'Remover Produto',[@venda, produto_venda], method: :delete, data: { confirm: 'Deseja remover este produto da venda?' } %></td>
+    <td><%= link_to 'Editar Produto', edit_venda_produto_venda_path(@venda, produto_venda) %></td>
   </ul>
 <% end %>
 
-<%= link_to 'Edit', edit_venda_path(@venda) %> |
-<%= link_to 'Back', vendas_path %>
-<%= link_to 'Add Prod', venda_produto_vendas_path(@venda) %> |
+<%= link_to 'Cancelar Venda', @venda, method: :delete, data: { confirm: 'Deseja cancelar esta venda?' } %>
+<%= link_to 'Adicionar Produto', new_venda_produto_venda_path(@venda) %>
+<%= link_to 'Finalizar Venda', root_path, notice: 'Venda realizada com sucesso.' %>

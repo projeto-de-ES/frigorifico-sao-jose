@@ -29,7 +29,7 @@ class ProdutoVendasController < ApplicationController
 
     respond_to do |format|
       if @produto_venda.save
-        format.html { redirect_to venda_produto_vendas_path(@venda), notice: 'Produto venda was successfully created.' }
+        format.html { redirect_to @venda, notice: 'Produto adicionado com sucesso.' }
         format.json { render :show, status: :created, location: @produto_venda }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ProdutoVendasController < ApplicationController
   def update
     respond_to do |format|
       if @produto_venda.update(produto_venda_params)
-        format.html { redirect_to venda_produto_venda_path(@venda), notice: 'Produto venda was successfully updated.' }
+        format.html { redirect_to @venda, notice: 'Produto editado com sucesso.' }
         format.json { render :show, status: :ok, location: @produto_venda }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class ProdutoVendasController < ApplicationController
   def destroy
     @produto_venda.destroy
     respond_to do |format|
-      format.html { redirect_to venda_produto_vendas_path(@venda), notice: 'Produto venda was successfully destroyed.' }
+      format.html { redirect_to @venda, notice: 'Produto removido com sucesso.' }
       format.json { head :no_content }
     end
   end

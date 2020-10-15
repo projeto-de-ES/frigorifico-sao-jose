@@ -13,7 +13,14 @@
 
   <div class="field">
     <%= form.label :produto_id %>
-    <%= form.text_field :produto_id %>
+    <%= form.text_field :produto_id%>
+    <!--<% @produtos = Produto.all %>
+    <select name="<%= :produto_id %>" id="produto_id" >
+      <% for produto in @produtos %>
+        <option value="<%= produto.id %>"> <%= produto.nome %> </option>
+      <% end %>
+    </select>-->
+
   </div>
 
   <div class="field">
