@@ -26,9 +26,11 @@ class ProdutoVendasController < ApplicationController
   # POST /produto_vendas.json
   def create
     @produto_venda = @venda.produto_vendas.build(produto_venda_params)
-
     respond_to do |format|
       if @produto_venda.save
+        ProdutoVenda.update(@produto_venda.id, :valor => @produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f )
+        Venda.update(@venda.id, :valor => @venda[:valor].to_f + (@produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f))
+        Produto.update(@produto_venda.produto_id, :qtd_estoque => @produto_venda.produto.qtd_estoque - @produto_venda[:qtd_produtos].to_f)
         format.html { redirect_to @venda, notice: 'Produto adicionado com sucesso.' }
         format.json { render :show, status: :created, location: @produto_venda }
       else
@@ -43,6 +45,9 @@ class ProdutoVendasController < ApplicationController
   def update
     respond_to do |format|
       if @produto_venda.update(produto_venda_params)
+        Venda.update(@venda.id, :valor => @venda[:valor].to_f - @produto_venda[:valor].to_f)
+        ProdutoVenda.update(@produto_venda.id, :valor => @produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f )
+        Venda.update(@venda.id, :valor => @venda[:valor].to_f + @produto_venda[:valor].to_f)
         format.html { redirect_to @venda, notice: 'Produto editado com sucesso.' }
         format.json { render :show, status: :ok, location: @produto_venda }
       else
@@ -56,6 +61,7 @@ class ProdutoVendasController < ApplicationController
   # DELETE /produto_vendas/1.json
   def destroy
     @produto_venda.destroy
+    Venda.update(@venda.id, :valor => @venda[:valor].to_f - @produto_venda[:valor].to_f)
     respond_to do |format|
       format.html { redirect_to @venda, notice: 'Produto removido com sucesso.' }
       format.json { head :no_content }

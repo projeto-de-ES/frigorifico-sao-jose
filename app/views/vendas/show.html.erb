@@ -12,7 +12,6 @@
     <li>Quantidade: <%= produto_venda.qtd_produtos %></li>
     <li>valor: <%= produto_venda.valor %></li>
     <td><%= link_to 'Remover Produto',[@venda, produto_venda], method: :delete, data: { confirm: 'Deseja remover este produto da venda?' } %></td>
-    <td><%= link_to 'Editar Produto', edit_venda_produto_venda_path(@venda, produto_venda) %></td>
   </ul>
 <% end %>
 

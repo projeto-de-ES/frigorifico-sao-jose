@@ -1,5 +1,12 @@
 class VendasController < ApplicationController
   before_action :set_venda, only: [:show, :edit, :update, :destroy]
+  before_action :logado
+
+  def logado
+    if !Usuario.checar_usuario_logado
+      redirect_to logins_path
+    end
+  end
 
   # GET /vendas
   # GET /vendas.json
