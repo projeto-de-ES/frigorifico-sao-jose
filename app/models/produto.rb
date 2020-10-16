@@ -4,4 +4,7 @@ class Produto < ApplicationRecord
   validates :categoria, presence: {message: "deve ser preenchido"}
   validates :qtd_estoque, presence: {message: "deve ser preenchido"}, numericality: true
   validates :preco, presence: {message: "deve ser preenchido"}, numericality: true
+
+  has_many :produto_vendas
+  has_many :vendas, through: :produto_vendas
 end

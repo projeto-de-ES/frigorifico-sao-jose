@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       post  'caixa/fechar', to: "caixa#fecharCaixa"
     end
   end
+  resources :produto_vendas
+  resources :vendas
+  resources :usuarios
   resources :logins
   get 'logins/index'
   get 'logins/destroy'
