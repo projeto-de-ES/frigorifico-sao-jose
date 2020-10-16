@@ -1,0 +1,34 @@
+<%= form_with(model: caixa, local: true, url: caixa_fechar_usuario_path, method: "post") do |form| %>
+  <% if caixa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(caixa.errors.count, "error") %> prohibited this caixa from being saved:</h2>
+
+      <ul>
+        <% caixa.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %> 
+    <div class="row form-group">
+        <div class="col-sm-4">
+            <%= form.label :valor_inicial %>
+            <%= form.text_field :valor_inicial, class: "form-control", disabled: true%>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-4">
+            <%= form.label :valor_total %>
+            <%= form.text_field :valor_total, class: "form-control"%>
+
+            <%= form.text_field :aberto, class: "form-control", type: "hidden", value: FALSE%>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-4">
+            <%= form.submit "Fechar", class: "btn btn-success" %>
+        </div>
+    </div>
+<% end %>
