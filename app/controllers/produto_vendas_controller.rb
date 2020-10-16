@@ -1,10 +1,11 @@
 class ProdutoVendasController < ApplicationController
+  before_action :get_venda
   before_action :set_produto_venda, only: [:show, :edit, :update, :destroy]
 
   # GET /produto_vendas
   # GET /produto_vendas.json
   def index
-    @produto_vendas = ProdutoVenda.all
+    @produto_vendas = @venda.produto_vendas
   end
 
   # GET /produto_vendas/1
@@ -14,7 +15,15 @@ class ProdutoVendasController < ApplicationController
 
   # GET /produto_vendas/new
   def new
-    @produto_venda = ProdutoVenda.new
+    @produto_venda = @venda.produto_vendas.build
+    @p = Produto.all
+    parcial = [2]
+    @produtos = []
+    @p.each do |pp|
+      parcial[0] = pp.nome
+      parcial[1] = pp.id
+      @produtos.push([parcial[0], parcial[1]])
+    end
   end
 
   # GET /produto_vendas/1/edit
@@ -24,17 +33,18 @@ class ProdutoVendasController < ApplicationController
   # POST /produto_vendas
   # POST /produto_vendas.json
   def create
-    @produto_venda = ProdutoVenda.new(produto_venda_params)
-
-    respond_to do |format|
-      if @produto_venda.save
-        format.html { redirect_to @produto_venda, notice: 'Produto venda was successfully created.' }
-        format.json { render :show, status: :created, location: @produto_venda }
-      else
-        format.html { render :new }
-        format.json { render json: @produto_venda.errors, status: :unprocessable_entity }
+    @produto_venda = @venda.produto_vendas.build(produto_venda_params)
+      respond_to do |format|
+        if @produto_venda.save
+          ProdutoVenda.update(@produto_venda.id, :valor => @produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f )
+          Venda.update(@venda.id, :valor => @venda[:valor].to_f + (@produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f))
+          format.html { redirect_to @venda, notice: 'Produto adicionado com sucesso.' }
+          format.json { render :show, status: :created, location: @produto_venda }
+        else
+          format.html { render :new }
+          format.json { render json: @produto_venda.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # PATCH/PUT /produto_vendas/1
@@ -42,7 +52,10 @@ class ProdutoVendasController < ApplicationController
   def update
     respond_to do |format|
       if @produto_venda.update(produto_venda_params)
-        format.html { redirect_to @produto_venda, notice: 'Produto venda was successfully updated.' }
+        Venda.update(@venda.id, :valor => @venda[:valor].to_f - @produto_venda[:valor].to_f)
+        ProdutoVenda.update(@produto_venda.id, :valor => @produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f )
+        Venda.update(@venda.id, :valor => @venda[:valor].to_f + @produto_venda[:valor].to_f)
+        format.html { redirect_to @venda, notice: 'Produto editado com sucesso.' }
         format.json { render :show, status: :ok, location: @produto_venda }
       else
         format.html { render :edit }
@@ -55,8 +68,9 @@ class ProdutoVendasController < ApplicationController
   # DELETE /produto_vendas/1.json
   def destroy
     @produto_venda.destroy
+    Venda.update(@venda.id, :valor => @venda[:valor].to_f - @produto_venda[:valor].to_f)
     respond_to do |format|
-      format.html { redirect_to produto_vendas_url, notice: 'Produto venda was successfully destroyed.' }
+      format.html { redirect_to @venda, notice: 'Produto removido com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +78,16 @@ class ProdutoVendasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_produto_venda
-      @produto_venda = ProdutoVenda.where("id = ?", params[:id]).first
+      @produto_venda = @venda.produto_vendas.where("id = ?", params[:id]).first
     end
 
     # Only allow a list of trusted parameters through.
     def produto_venda_params
       params.require(:produto_venda).permit(:produto_id, :venda_id, :qtd_produtos, :valor)
     end
+
+  def get_venda
+    @venda = Venda.find(params[:venda_id])
+  end
+
 end

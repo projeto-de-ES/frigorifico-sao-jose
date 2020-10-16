@@ -1,5 +1,12 @@
 class VendasController < ApplicationController
   before_action :set_venda, only: [:show, :edit, :update, :destroy]
+  before_action :logado
+
+  def logado
+    unless Usuario.checar_usuario_logado
+      redirect_to logins_path
+    end
+  end
 
   # GET /vendas
   # GET /vendas.json
@@ -54,11 +61,22 @@ class VendasController < ApplicationController
   # DELETE /vendas/1
   # DELETE /vendas/1.json
   def destroy
+    for produto_venda in @venda.produto_vendas
+      produto_venda.destroy
+    end
     @venda.destroy
     respond_to do |format|
-      format.html { redirect_to vendas_url, notice: 'Venda was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Venda was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def finalizarVenda
+    @venda = Venda.find(params[:id])
+    @venda.produto_vendas.each do |produto_venda|
+      Produto.update(produto_venda.produto_id, :qtd_estoque => produto_venda.produto.qtd_estoque - produto_venda[:qtd_produtos].to_f)
+    end
+    redirect_to root_path, notice: "Venda finalizada com sucesso."
   end
 
   private
