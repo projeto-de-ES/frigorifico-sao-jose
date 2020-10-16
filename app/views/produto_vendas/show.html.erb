@@ -20,5 +20,5 @@
   <%= @produto_venda.valor %>
 </p>
 
-<%= link_to 'Edit', edit_produto_venda_path(@produto_venda) %> |
-<%= link_to 'Back', produto_vendas_path %>
+<%= link_to 'Edit', edit_venda_produto_venda_path(@venda, @produto_venda) %> |
+<%= link_to 'Back', venda_produto_vendas_path(@venda) %>
