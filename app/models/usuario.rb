@@ -3,7 +3,7 @@ class Usuario < ApplicationRecord
   validates :nome, presence:{message: "campo deve ser preenchido"}, length: {minimum: 4, message: "Minimo de 4 caracteres não atingido"}
   validates :senha, presence: {message: "campo deve ser preenchido"}, length: {minimum: 8, message: "Minimo de 8 caracteres não atingido"}
 
-
+  has_one :caixa
 private
 @is_logado = false
 

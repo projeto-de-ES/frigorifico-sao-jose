@@ -15,6 +15,18 @@ ActiveRecord::Schema.define(version: 2020_10_14_152510) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "caixas", force: :cascade do |t|
+    t.date "data"
+    t.float "valor_inicial"
+    t.float "valor_total"
+    t.float "valor_arrecadado"
+    t.boolean "aberto"
+    t.bigint "usuario_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["usuario_id"], name: "index_caixas_on_usuario_id"
+  end
+
   create_table "produto_vendas", force: :cascade do |t|
     t.bigint "produto_id", null: false
     t.bigint "venda_id", null: false
@@ -49,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_10_14_152510) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "caixas", "usuarios"
   add_foreign_key "produto_vendas", "produtos"
   add_foreign_key "produto_vendas", "vendas"
 end
