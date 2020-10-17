@@ -35,7 +35,7 @@ class VendasController < ApplicationController
 
     respond_to do |format|
       if @venda.save
-        format.html { redirect_to @venda, notice: 'Venda was successfully created.' }
+        format.html { redirect_to @venda }
         format.json { render :show, status: :created, location: @venda }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class VendasController < ApplicationController
   def update
     respond_to do |format|
       if @venda.update(venda_params)
-        format.html { redirect_to @venda, notice: 'Venda was successfully updated.' }
+        format.html { redirect_to @venda, notice: 'Venda atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @venda }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class VendasController < ApplicationController
     end
     @venda.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Venda was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Venda cancelada com sucesso.' }
       format.json { head :no_content }
     end
   end
