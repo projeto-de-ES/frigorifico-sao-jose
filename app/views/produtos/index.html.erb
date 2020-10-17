@@ -31,8 +31,8 @@
       <tr>
         <td scope="row"><%= produto.nome %></td>
         <td><%= produto.categoria %></td>
-        <td><%= produto.qtd_estoque %></td>
-        <td><%= produto.preco %></td>
+        <td><%= "%0.02f Kg" % produto.qtd_estoque %></td>
+        <td><%= "R$ %0.02f" % produto.preco %></td>
         <td><%= link_to 'Visualizar', produto , id: "v-#{produto.nome}"%></td>
         <td><%= link_to 'Editar', edit_produto_path(produto), id: "e-#{produto.nome}" %></td>
         <td><%= link_to 'Deletar', produto, method: :delete, data: { confirm: 'Você deseja realmente excluir este produto?' } , id: "d-#{produto.nome}"%></td>
