@@ -50,5 +50,5 @@ Then ("Eu vejo mensagem de erro") do
 end
 
 And("Eu clico em cancelar venda") do
-
+  click_link "cancelar"
 end

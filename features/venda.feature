@@ -27,12 +27,21 @@ Feature: Realizar e atualizar venda de produtos
     And Eu clico em adicionar
     Then Eu vejo uma mensagem 'Quantidade de produto excede a quantidade em estoque.'
 
-  Scenario: Cancelar venda
+  Scenario: Realizar venda com quantidade do produto nao preenchido
     Given Eu estou logado no sistema
     And Eu abri o caixa com o valor inicial de '20.00' reais
     And Eu clico em vendas
     And Eu clico em adicionar produto
     When Eu preencho o produto com o nome 'coxao mole' e quantidade com ' '
     And Eu clico em adicionar
-    And Eu clico em cancelar venda
     Then Eu vejo uma mensagem 'Campo quantidade de produtos deve ser preenchido.'
+
+  Scenario: Cancelar venda
+    Given Eu estou logado no sistema
+    And Eu abri o caixa com o valor inicial de '20.00' reais
+    And Eu clico em vendas
+    And Eu clico em adicionar produto
+    When Eu preencho o produto com o nome 'coxao mole' e quantidade com '15'
+    And Eu clico em adicionar
+    And Eu clico em cancelar venda
+    Then Eu vejo uma mensagem 'Venda cancelada com sucesso.'
