@@ -1,4 +1,4 @@
-<p class="erroproduto" style="color: #cc0000" id="notice"><%= notice %></p>
+<p style="color: #cc0000" id="notice"><%= notice %></p>
 <%= form_with(model: [@venda, produto_venda], local: true) do |form| %>
   <% if produto_venda.errors.any? %>
     <div id="error_explanation">
