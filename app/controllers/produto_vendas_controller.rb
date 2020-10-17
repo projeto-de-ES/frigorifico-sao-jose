@@ -33,18 +33,31 @@ class ProdutoVendasController < ApplicationController
   # POST /produto_vendas
   # POST /produto_vendas.json
   def create
+    @mensagem = ""
     @produto_venda = @venda.produto_vendas.build(produto_venda_params)
-      respond_to do |format|
-        if @produto_venda.save
-          ProdutoVenda.update(@produto_venda.id, :valor => @produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f )
-          Venda.update(@venda.id, :valor => @venda[:valor].to_f + (@produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f))
-          format.html { redirect_to @venda, notice: 'Produto adicionado com sucesso.' }
-          format.json { render :show, status: :created, location: @produto_venda }
+    if @produto_venda.produto.qtd_estoque > 0
+      if !@produto_venda.qtd_produtos.nil?
+        if (@produto_venda.produto.qtd_estoque - @produto_venda.qtd_produtos) > 0
+          respond_to do |format|
+            if @produto_venda.save
+              ProdutoVenda.update(@produto_venda.id, :valor => @produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f )
+              Venda.update(@venda.id, :valor => @venda[:valor].to_f + (@produto_venda[:qtd_produtos].to_f * @produto_venda.produto.preco.to_f))
+              format.html { redirect_to @venda, notice: 'Produto adicionado com sucesso.' }
+              format.json { render :show, status: :created, location: @produto_venda }
+            else
+              format.html { render :new }
+              format.json { render json: @produto_venda.errors, status: :unprocessable_entity }
+            end
+          end
         else
-          format.html { render :new }
-          format.json { render json: @produto_venda.errors, status: :unprocessable_entity }
+          redirect_to new_venda_produto_venda_path(@venda), notice: "Quantidade de produto excede a quantidade em estoque."
         end
+      else
+        redirect_to new_venda_produto_venda_path(@venda), notice: "Campo quantidade de produtos deve ser preenchido."
       end
+    else
+      redirect_to new_venda_produto_venda_path(@venda), notice: "Produto em falta no estoque."
+    end
   end
 
   # PATCH/PUT /produto_vendas/1
