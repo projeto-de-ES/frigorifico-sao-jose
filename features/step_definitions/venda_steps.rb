@@ -41,9 +41,6 @@ end
 And("Eu clico em finalizar venda") do
   click_link "finalizar"
 end
-Then ("Eu vejo a mensagem de {string}") do |string|
-  expect(page).to have_content(string)
-end
 
 Then ("Eu vejo mensagem de erro") do
   assert_selector('div#error_explanation', text:"")
