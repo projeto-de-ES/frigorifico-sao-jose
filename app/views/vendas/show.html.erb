@@ -28,5 +28,5 @@
 </div>
 
 <%= link_to 'Cancelar Venda', @venda, method: :delete, data: { confirm: 'Deseja cancelar esta venda?' }, class: "btn btn-primary" %>
-<%= link_to 'Adicionar Produto', new_venda_produto_venda_path(@venda), class: "btn btn-primary" %>
-<%= link_to 'Finalizar Venda', finalizarVenda_venda_path(@venda), class: "btn btn-primary" %>
+<%= link_to 'Adicionar Produto', new_venda_produto_venda_path(@venda), class: "btn btn-primary", :id => "addProduto" %>
+<%= link_to 'Finalizar Venda', finalizarVenda_venda_path(@venda), class: "btn btn-primary", :id => "finalizar" %>
