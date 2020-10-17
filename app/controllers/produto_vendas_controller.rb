@@ -36,7 +36,7 @@ class ProdutoVendasController < ApplicationController
     @mensagem = ""
     @produto_venda = @venda.produto_vendas.build(produto_venda_params)
     if @produto_venda.produto.qtd_estoque > 0
-      if @produto_venda.qtd_produtos != nil
+      if !@produto_venda.qtd_produtos.nil?
         if (@produto_venda.produto.qtd_estoque - @produto_venda.qtd_produtos) > 0
           respond_to do |format|
             if @produto_venda.save
