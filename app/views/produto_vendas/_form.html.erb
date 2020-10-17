@@ -12,18 +12,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :produto_id %>
-    <%= form.select :produto_id, @produtos, include: true %>
+  <div class="row form-group">
+    <div class="col-sm-4">
+      <%= form.label :produto_id %>
+      <%= form.select :produto_id, @produtos, {include: true}, class: "form-control"%>
+    </div>
 
+    <div class="col-sm-4">
+      <%= form.label :qtd_produtos %>
+      <%= form.text_field :qtd_produtos, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :qtd_produtos %>
-    <%= form.text_field :qtd_produtos %>
-  </div>
+  
 
   <div class="actions">
-    <%= form.submit "Adicionar"%>
+    <%= form.submit "Adicionar", class: "btn btn-success"%>
   </div>
 <% end %>

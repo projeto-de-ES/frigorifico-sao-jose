@@ -20,9 +20,16 @@
     <div class="row form-group">
         <div class="col-sm-4">
             <%= form.label :valor_total %>
-            <%= form.text_field :valor_total, class: "form-control"%>
+            <%= form.text_field :valor_total, class: "form-control", disabled: true%>
 
             <%= form.text_field :aberto, class: "form-control", type: "hidden", value: FALSE%>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-4">
+            <%= form.label :valor_arrecadado %>
+            <%= form.text_field :valor_arrecadado, class: "form-control", disabled: true%>
         </div>
     </div>
 
