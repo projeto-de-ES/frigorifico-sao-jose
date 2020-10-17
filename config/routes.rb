@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :usuarios do 
+    member do 
+      get   'caixa/abrir'
+      post  'caixa/abrir', to: "caixa#abrirCaixa"
+      get   'caixa/fechar'
+      post  'caixa/fechar', to: "caixa#fecharCaixa"
+    end
+  end
   resources :vendas do
     resources :produto_vendas
     member do
