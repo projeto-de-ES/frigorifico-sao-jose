@@ -16,17 +16,39 @@
 <div class="row">
   <div class="col-sm-12">
     <h2>Produtos da venda</h2>
-    <% for produto_venda in @venda.produto_vendas %>
-      <ul>
-        <li><%= produto_venda.produto.nome %></li>
-        <li>Quantidade: <%= produto_venda.qtd_produtos %></li>
-        <li>valor: <%= produto_venda.valor %></li>
-        <td><%= link_to 'Remover Produto',[@venda, produto_venda], method: :delete, data: { confirm: 'Deseja remover este produto da venda?' } %></td>
-      </ul>
-    <% end %>
   </div>
 </div>
 
-<%= link_to 'Cancelar Venda', @venda, method: :delete, data: { confirm: 'Deseja cancelar esta venda?' }, class: "btn btn-primary", :id => "cancelar"%>
-<%= link_to 'Adicionar Produto', new_venda_produto_venda_path(@venda), class: "btn btn-primary", :id => "addProduto" %>
-<%= link_to 'Finalizar Venda', finalizarVenda_venda_path(@venda), class: "btn btn-primary", :id => "finalizar" %>
+<div class="row">
+    <% for produto_venda in @venda.produto_vendas %>
+      <div class="col-sm-3">
+        <div class="card" style="width: 16rem; margin: 5px;">
+          <div class="card-body">
+            <h5 class="card-title"><%= produto_venda.produto.nome %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"></h6>
+            <p class="card-text">
+                <div class="row">
+                  <div class="col-sm-12">
+                    Quantidade: <%= "%0.0f" % produto_venda.qtd_produtos %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    valor: <%= "R$ %0.02f" % produto_venda.valor %>
+                  </div>
+                </div>
+            </p>
+            <%= link_to 'Remover Produto',[@venda, produto_venda], method: :delete, data: { confirm: 'Deseja remover este produto da venda?' } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>
+
+<div class="row" style="position: relative; top:20px;">
+  <div class="col-sm-12">
+    <%= link_to 'Cancelar Venda', @venda, method: :delete, data: { confirm: 'Deseja cancelar esta venda?' }, class: "btn btn-primary", :id => "cancelar"%>
+    <%= link_to 'Adicionar Produto', new_venda_produto_venda_path(@venda), class: "btn btn-primary", :id => "addProduto" %>
+    <%= link_to 'Finalizar Venda', finalizarVenda_venda_path(@venda), class: "btn btn-primary", :id => "finalizar" %>
+  </div>
+</div>
