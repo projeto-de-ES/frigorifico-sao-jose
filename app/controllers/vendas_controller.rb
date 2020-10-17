@@ -21,7 +21,12 @@ class VendasController < ApplicationController
 
   # GET /vendas/new
   def new
-    @venda = Venda.new
+    caixa = Caixa.where(usuario_id: Usuario.get_usuario.id).where(aberto: true).where(data: Time.current).take
+    unless caixa.present?
+      redirect_to root_url, notice: 'Caixa fechado, para efetuar uma venda, abra o caixa.'
+    else
+      @venda = Venda.new
+    end
   end
 
   # GET /vendas/1/edit
