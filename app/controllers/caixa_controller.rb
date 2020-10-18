@@ -35,6 +35,8 @@ class CaixaController < ApplicationController
 
         respond_to do |format|
             if @caixa.save
+                @caixa.valor_arrecadado = @caixa.valor_total - @caixa.valor_inicial
+                @caixa.update(caixa_params)
                 format.html { redirect_to root_url, notice: 'Caixa aberto com sucesso.' }
                 format.json { render :show, status: :created, location: @caixa }
             else

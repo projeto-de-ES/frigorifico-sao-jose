@@ -10,32 +10,49 @@
       </ul>
     </div>
   <% end %> 
-    <div class="row form-group">
-        <div class="col-sm-4">
-            <%= form.label :valor_inicial %>
-            <%= form.text_field :valor_inicial, class: "form-control", disabled: true%>
-        </div>
+  <div class="row form-group">
+    <div class="card" style="width: 16rem; margin: 5px; background-color: #ebecef;">
+      <div class="card-body">
+        <h5 class="card-title" style="background-color: #306de1; color: white; padding: 10px; border-radius: 5px;">Caixa de <%= Time.current %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"></h6>
+        <p class="card-text">
+            <div class="row">
+              <div class="col-sm-12">
+                <h5>Valor inicíal<h5>
+                <p>
+                  <%= "R$ %0.02f" % caixa.valor_inicial %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h5>Valor total<h5>
+                <p>
+                  <%= "R$ %0.02f" % caixa.valor_total %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h5>Valor arrecadado<h5>
+                <p>
+                  <%= "R$ %0.02f" % caixa.valor_arrecadado %>
+                </p>
+              </div>
+            </div>
+        </p>
+      </div>
     </div>
+  </div>
 
-    <div class="row form-group">
-        <div class="col-sm-4">
-            <%= form.label :valor_total %>
-            <%= form.text_field :valor_total, class: "form-control", disabled: true%>
+  <%= form.text_field :valor_inicial, class: "form-control", disabled: true, type: "hidden"%>
+  <%= form.text_field :valor_total, class: "form-control", disabled: true, type: "hidden"%>
+  <%= form.text_field :valor_arrecadado, class: "form-control", disabled: true, type: "hidden"%>
+  <%= form.text_field :aberto, class: "form-control", type: "hidden", value: FALSE%>
 
-            <%= form.text_field :aberto, class: "form-control", type: "hidden", value: FALSE%>
-        </div>
-    </div>
-
-    <div class="row form-group">
-        <div class="col-sm-4">
-            <%= form.label :valor_arrecadado %>
-            <%= form.text_field :valor_arrecadado, class: "form-control", disabled: true%>
-        </div>
-    </div>
-
-    <div class="row form-group">
-        <div class="col-sm-4">
-            <%= form.submit "Fechar", class: "btn btn-success" %>
-        </div>
-    </div>
+  <div class="row form-group">
+      <div class="col-sm-4">
+          <%= form.submit "Fechar", class: "btn btn-success", id: "btn-fechar" %>
+      </div>
+  </div>
 <% end %>

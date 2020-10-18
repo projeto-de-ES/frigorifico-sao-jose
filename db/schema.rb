@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2020_10_14_152510) do
   create_table "caixas", force: :cascade do |t|
     t.date "data"
     t.float "valor_inicial"
-    t.float "valor_total"
-    t.float "valor_arrecadado"
+    t.float "valor_total", null: false
+    t.float "valor_arrecadado", null: false
     t.boolean "aberto"
     t.bigint "usuario_id", null: false
     t.datetime "created_at", precision: 6, null: false
