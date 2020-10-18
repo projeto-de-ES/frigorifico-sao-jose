@@ -25,6 +25,6 @@ class CaixaTest < ActiveSupport::TestCase
     caixa = Caixa.new valor_inicial: 200.0, valor_total: 200.0, valor_arrecadado: 0.0, aberto: true, data: "2020-10-17", usuario_id: usuario.id
     caixa.save
     caixa.aberto = false
-    assert caixa.update
+    assert caixa.update(valor_inicial: caixa.valor_inicial, valor_total: caixa.valor_total, valor_arrecadado: caixa.valor_arrecadado)
   end
 end
