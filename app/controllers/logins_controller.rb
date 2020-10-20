@@ -22,15 +22,15 @@ class LoginsController < ApplicationController
   end
 
   def buscarLogin(login,senha)
-    busca = Usuario.all
-    aux = nil
+    todos_usuarios = Usuario.all
+    usuario_logado = nil
 
-    busca.each do |b|
-      if b.login == login && b.senha == senha
-        aux = b
+    todos_usuarios.each do |usuario|
+      if usuario.login == login && usuario.senha == senha
+        usuario_logado = usuario
       end
     end
-    aux
+    usuario_logado
   end
 
   def destroy
