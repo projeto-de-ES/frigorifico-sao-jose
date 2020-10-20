@@ -8,14 +8,12 @@ class LoginsController < ApplicationController
     login = params[:login]
     senha = params[:senha]
 
-    aux = buscarLogin(login,senha)
+    usuario_logado = buscarLogin(login,senha)
 
-    if aux.nil?
-      mensagem = ["Login ou senha não encontrado."]
-      @mensagens = mensagem
-      redirect_to logins_path
+    if usuario_logado.nil?
+      redirect_to logins_path, notice: "Login ou senha não encontrado."
     else
-      Usuario.set_usuario(aux)
+      Usuario.set_usuario(usuario_logado)
       redirect_to root_path, notice: "Usuário logado com sucesso!"
     end
 
