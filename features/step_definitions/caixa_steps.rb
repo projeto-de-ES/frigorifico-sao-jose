@@ -1,14 +1,3 @@
-Given ("Eu encontro-me logado no sistema") do
-    visit "usuarios/new"
-    fill_in "usuario[nome]", :with => "Victor"
-    fill_in "usuario[login]", :with => "victor@gmail.com"
-    fill_in "usuario[senha]", :with => "12345678"
-    click_button "Salvar"
-    fill_in "login", :with => "victor@gmail.com"
-    fill_in "senha", :with => "12345678"
-    click_button "entrar"
-end
-
 And ("Clico em abrir caixa") do
     click_link "abrir-caixa"
 end
@@ -23,13 +12,6 @@ end
 
 Then ("Eu vejo a mensagem {string}") do |mensagem|
     expect(page).to have_content(mensagem)
-end
-
-And ("Eu abro o caixa com {string} de valor inicial") do |valor|
-    step ("Clico em abrir caixa")
-    fill_in "caixa_valor_inicial",  :with => valor
-    step ("Clico no botao que abre o caixa")
-    step ("Eu vejo a mensagem 'Caixa aberto com sucesso.'")
 end
 
 And ("Clico em fechar caixa") do

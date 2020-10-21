@@ -21,6 +21,7 @@ script:
   - bundle exec cucumber features/produto.feature
   - bundle exec cucumber features/usuario.feature
   - bundle exec cucumber features/venda.feature
+  - bundle exec cucumber features/caixa.feature
 
 #  - ruby -S bundle exec cucumber --profile default
 

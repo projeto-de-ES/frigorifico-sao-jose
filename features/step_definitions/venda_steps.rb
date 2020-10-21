@@ -30,10 +30,11 @@ And ("Eu clico em adicionar produto") do
   click_link "addProduto"
 end
 
-When("Eu preencho o produto com o nome {string} e quantidade com {string}") do |nome,qtd_produto|
+When("Eu preencho o produto com o nome {string} e quantidade com {string}") do |nome,qtd_produtos|
   select nome, from:'produto_venda[produto_id]'
-  fill_in "produto_venda[qtd_produtos]", :with => qtd_produto
+  fill_in "produto_venda[qtd_produtos]", :with => qtd_produtos
 end
+
 And("Eu clico em adicionar") do
   click_button "Adicionar"
 end
