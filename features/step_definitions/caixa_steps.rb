@@ -14,13 +14,6 @@ Then ("Eu vejo a mensagem {string}") do |mensagem|
     expect(page).to have_content(mensagem)
 end
 
-And ("Eu abro o caixa com {string} de valor inicial") do |valor|
-    step ("Clico em abrir caixa")
-    fill_in "caixa_valor_inicial",  :with => valor
-    step ("Clico no botao que abre o caixa")
-    step ("Eu vejo a mensagem 'Caixa aberto com sucesso.'")
-end
-
 And ("Clico em fechar caixa") do
     click_link "fechar-caixa"
 end
