@@ -9,9 +9,9 @@ Given ("Eu estou logado no sistema") do
   click_button "entrar"
 end
 
-And ("Eu abri o caixa com o valor inicial de {string} reais") do |string|
+And ("Eu abri o caixa com o valor inicial de {string} reais") do |valor_inicial|
   visit "usuarios/1/caixa/abrir"
-  fill_in "caixa[valor_inicial]", :with => string
+  fill_in "caixa[valor_inicial]", :with => valor_inicial
   click_button "Abrir"
 end
 
@@ -30,9 +30,9 @@ And ("Eu clico em adicionar produto") do
   click_link "addProduto"
 end
 
-When("Eu preencho o produto com o nome {string} e quantidade com {string}") do |string,string2|
-  select string, from:'produto_venda[produto_id]'
-  fill_in "produto_venda[qtd_produtos]", :with => string2
+When("Eu preencho o produto com o nome {string} e quantidade com {string}") do |nome,qtd_produto|
+  select nome, from:'produto_venda[produto_id]'
+  fill_in "produto_venda[qtd_produtos]", :with => qtd_produto
 end
 And("Eu clico em adicionar") do
   click_button "Adicionar"
