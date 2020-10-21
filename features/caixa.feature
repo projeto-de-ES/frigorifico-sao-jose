@@ -24,12 +24,12 @@ Feature: Abrir e fechar caixa
         And Clico em abrir caixa
         Then Eu vejo a mensagem 'Ja existe um caixa aberto.'
     
-    Scenario: Fechar o caixa com nenhum caixa ja aberto
+    Scenario: Fechar o caixa com nenhum caixa aberto
         Given Eu encontro-me logado no sistema
         And Clico em fechar caixa
         Then Eu vejo a mensagem 'Nao existe nenhum caixa aberto.'
 
-    Scenario: Realizar uma venda com nenhum caixa ja aberto
+    Scenario: Realizar uma venda com nenhum caixa aberto
         Given Eu encontro-me logado no sistema
         And Clico em vendas
-        Then Eu vejo a mensagem 'Caixa fechado, para efetuar uma venda abra o caixa.'
+        Then Eu vejo a mensagem 'Nenhum caixa aberto, para efetuar uma venda abra o caixa.'
