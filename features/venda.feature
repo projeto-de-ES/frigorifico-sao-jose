@@ -6,6 +6,7 @@ Feature: Realizar e atualizar venda de produtos
   Scenario: Nova venda
     Given Eu estou logado
     And Eu abri o caixa com o valor inicial de '20.00' reais
+    And Eu tenho um produto cadastrado
     And Eu clico em vendas
     And Eu clico em adicionar produto
     When Eu preencho o produto com o nome 'coxao mole' e quantidade com '13.5'
@@ -21,6 +22,7 @@ Feature: Realizar e atualizar venda de produtos
   Scenario: Nova venda com quantidade de produto excedida do estoque
     Given Eu estou logado
     And Eu abri o caixa com o valor inicial de '20.00' reais
+    And Eu tenho um produto cadastrado
     And Eu clico em vendas
     And Eu clico em adicionar produto
     When Eu preencho o produto com o nome 'coxao mole' e quantidade com '25'
@@ -30,6 +32,7 @@ Feature: Realizar e atualizar venda de produtos
   Scenario: Realizar venda com quantidade do produto nao preenchido
     Given Eu estou logado
     And Eu abri o caixa com o valor inicial de '20.00' reais
+    And Eu tenho um produto cadastrado
     And Eu clico em vendas
     And Eu clico em adicionar produto
     When Eu preencho o produto com o nome 'coxao mole' e quantidade com ' '
@@ -39,6 +42,7 @@ Feature: Realizar e atualizar venda de produtos
   Scenario: Cancelar venda
     Given Eu estou logado
     And Eu abri o caixa com o valor inicial de '20.00' reais
+    And Eu tenho um produto cadastrado
     And Eu clico em vendas
     And Eu clico em adicionar produto
     When Eu preencho o produto com o nome 'coxao mole' e quantidade com '15'
