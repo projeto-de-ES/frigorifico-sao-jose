@@ -21,7 +21,12 @@ class VendasController < ApplicationController
 
   # GET /vendas/new
   def new
-    @venda = Venda.new
+    caixa = Caixa.where(usuario_id: Usuario.get_usuario.id).where(aberto: true).where(data: Time.current).take
+    unless caixa.present?
+      redirect_to root_url, notice: 'Nenhum caixa aberto, para efetuar uma venda abra o caixa.'
+    else
+      @venda = Venda.new
+    end
   end
 
   # GET /vendas/1/edit
@@ -73,6 +78,12 @@ class VendasController < ApplicationController
 
   def finalizarVenda
     @venda = Venda.find(params[:id])
+
+    caixa = Caixa.where(usuario_id: Usuario.get_usuario.id).where(aberto: true).where(data: Time.current).take
+    caixa.valor_total = caixa.valor_total + @venda.valor 
+    caixa.valor_arrecadado = caixa.valor_total - caixa.valor_inicial
+    caixa.update({:valor_inicial => caixa.valor_inicial, :valor_total => caixa.valor_total, :valor_arrecadado => caixa.valor_arrecadado})
+
     @venda.produto_vendas.each do |produto_venda|
       Produto.update(produto_venda.produto_id, :qtd_estoque => produto_venda.produto.qtd_estoque - produto_venda[:qtd_produtos].to_f)
     end

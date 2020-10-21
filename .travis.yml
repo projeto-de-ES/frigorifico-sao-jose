@@ -17,9 +17,11 @@ script:
   - bundle exec rails test test/models/produto_test.rb
   - bundle exec rails test test/models/usuario_test.rb
   - bundle exec rails test test/models/venda_test.rb
+  - bundle exec rails test test/models/caixa_test.rb
   - bundle exec cucumber features/produto.feature
   - bundle exec cucumber features/usuario.feature
   - bundle exec cucumber features/venda.feature
+  - bundle exec cucumber features/caixa.feature
 
 #  - ruby -S bundle exec cucumber --profile default
 

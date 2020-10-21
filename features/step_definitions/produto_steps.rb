@@ -13,19 +13,19 @@ And ("Eu estou na pagina de Novo produto") do
   visit "produtos/new"
 end
 
-When('Eu preencho o nome com {string}, seleciono a categoria {string}, quantidade em estoque com {string} e preço com {string}') do |string, string2, string3, string4|
-  fill_in "produto[nome]", :with => string
-  select string2, from: "produto[categoria]"
-  fill_in "produto[qtd_estoque]", :with => string3
-  fill_in "produto[preco]", :with => string4
+When('Eu preencho o nome com {string}, seleciono a categoria {string}, quantidade em estoque com {string} e preço com {string}') do |nome, categoria, qtd_estoque, preco|
+  fill_in "produto[nome]", :with => nome
+  select categoria, from: "produto[categoria]"
+  fill_in "produto[qtd_estoque]", :with => qtd_estoque
+  fill_in "produto[preco]", :with => preco
 end
 
 And ("Eu clico em salvar") do
   click_button "Salvar"
 end
 
-Then("Eu vejo uma mensagem {string}") do |string|
-  expect(page).to have_content(string)
+Then("Eu vejo uma mensagem {string}") do |mensagem|
+  expect(page).to have_content(mensagem)
 end
 
 Then ("Eu vejo uma mensagem de erro") do
@@ -42,8 +42,8 @@ And ("Eu estou na pagina de produtos") do
   visit "/produtos"
 end
 
-When('Eu clico na opcao de editar um produto com nome {string}') do |string|
-  click_link "e-#{string}"
+When('Eu clico na opcao de editar um produto com nome {string}') do |nome|
+  click_link "e-#{nome}"
 end
 
 

@@ -16,13 +16,12 @@ class ProdutoVendasController < ApplicationController
   # GET /produto_vendas/new
   def new
     @produto_venda = @venda.produto_vendas.build
-    @p = Produto.all
-    parcial = [2]
+    @todos_produtos = Produto.all
     @produtos = []
-    @p.each do |pp|
-      parcial[0] = pp.nome
-      parcial[1] = pp.id
-      @produtos.push([parcial[0], parcial[1]])
+    @todos_produtos.each do |pp|
+      nome = pp.nome
+      id = pp.id
+      @produtos.push([nome, id])
     end
   end
 
