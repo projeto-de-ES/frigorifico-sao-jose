@@ -22,12 +22,12 @@ Feature: Abrir e fechar caixa
         Given Eu encontro-me logado no sistema
         And Eu abro o caixa com '100' de valor inicial
         And Clico em abrir caixa
-        Then Eu vejo a mensagem 'Já existe um caixa aberto.'
+        Then Eu vejo a mensagem 'Ja existe um caixa aberto.'
     
     Scenario: Fechar o caixa com nenhum caixa ja aberto
         Given Eu encontro-me logado no sistema
         And Clico em fechar caixa
-        Then Eu vejo a mensagem 'Não existe nenhum caixa aberto.'
+        Then Eu vejo a mensagem 'Nao existe nenhum caixa aberto.'
 
     Scenario: Realizar uma venda com nenhum caixa ja aberto
         Given Eu encontro-me logado no sistema
