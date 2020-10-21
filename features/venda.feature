@@ -4,7 +4,7 @@ Feature: Realizar e atualizar venda de produtos
   So that Eu nao tenha que fazer manualmente
 
   Scenario: Nova venda
-    Given Eu estou logado no sistema
+    Given Eu estou logado
     And Eu abri o caixa com o valor inicial de '20.00' reais
     And Eu clico em vendas
     And Eu clico em adicionar produto
@@ -14,12 +14,12 @@ Feature: Realizar e atualizar venda de produtos
     Then Eu vejo uma mensagem 'Venda finalizada com sucesso.'
 
   Scenario: Cadastrar venda com caixa com valor nao preenchido
-    Given Eu estou logado no sistema
+    Given Eu estou logado
     When Eu abri o caixa com o valor inicial de '' reais
     Then Eu vejo mensagem de erro
 
   Scenario: Nova venda com quantidade de produto excedida do estoque
-    Given Eu estou logado no sistema
+    Given Eu estou logado
     And Eu abri o caixa com o valor inicial de '20.00' reais
     And Eu clico em vendas
     And Eu clico em adicionar produto
@@ -28,7 +28,7 @@ Feature: Realizar e atualizar venda de produtos
     Then Eu vejo uma mensagem 'Quantidade de produto excede a quantidade em estoque.'
 
   Scenario: Realizar venda com quantidade do produto nao preenchido
-    Given Eu estou logado no sistema
+    Given Eu estou logado
     And Eu abri o caixa com o valor inicial de '20.00' reais
     And Eu clico em vendas
     And Eu clico em adicionar produto
@@ -37,7 +37,7 @@ Feature: Realizar e atualizar venda de produtos
     Then Eu vejo uma mensagem 'Campo quantidade de produtos deve ser preenchido.'
 
   Scenario: Cancelar venda
-    Given Eu estou logado no sistema
+    Given Eu estou logado
     And Eu abri o caixa com o valor inicial de '20.00' reais
     And Eu clico em vendas
     And Eu clico em adicionar produto
