@@ -28,10 +28,7 @@ class CaixaController < ApplicationController
 
     def abrirCaixa
         @caixa = Caixa.new(caixa_params)
-        @caixa.usuario_id = Usuario.find(params[:id]).id
-        @caixa.valor_total = @caixa.valor_inicial
-        @caixa.data = Time.current
-        @caixa.aberto = true
+        @caixa = @caixa.abrirUmCaixa(@caixa,params[:id])
 
         respond_to do |format|
             if @caixa.save
