@@ -8,9 +8,9 @@ class CaixaController < ApplicationController
     end
 
     def abrir
-        caixa = Caixa.where(usuario_id: params[:id]).where(aberto: true).where(data: Time.current).take
-        if caixa.present?
-            @caixa = caixa
+        @caixa = Caixa.new
+        if @caixa.algumCaixaAberto (params[:id])
+            @caixa = @caixa.getCaixaAberto (params[:id])
             redirect_to root_url, notice: 'Ja existe um caixa aberto.'
         else
             @caixa = Caixa.new
@@ -18,11 +18,11 @@ class CaixaController < ApplicationController
     end
 
     def fechar
-        caixa = Caixa.where(usuario_id: params[:id]).where(aberto: true).where(data: Time.current).take
-        if !caixa.present?
+        @caixa = Caixa.new
+        if !@caixa.algumCaixaAberto (params[:id])
             redirect_to root_url, notice: 'Nao existe nenhum caixa aberto.'
         else
-            @caixa = caixa
+            @caixa = @caixa.getCaixaAberto (params[:id])
         end
     end
 
@@ -47,7 +47,8 @@ class CaixaController < ApplicationController
     end
 
     def fecharCaixa
-        caixa = Caixa.where(usuario_id: params[:id]).where(aberto: true).where(data: Time.current).take
+        caixa = Caixa.new
+        caixa = caixa.getCaixaAberto (params[:id])
         # puts(Date.current)
         respond_to do |format|
             if caixa.data != Date.current
