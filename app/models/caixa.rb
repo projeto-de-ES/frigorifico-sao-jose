@@ -13,6 +13,6 @@ class Caixa < ApplicationRecord
   end
 
   def getCaixaAberto (usuario_id)
-    caixa = Caixa.where(usuario_id: usuario_id).where(aberto: true).where(data: Time.current).take
+    Caixa.where(usuario_id: usuario_id).where(aberto: true).where(data: Time.current).take
   end
 end
