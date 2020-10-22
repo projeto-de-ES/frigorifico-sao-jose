@@ -19,7 +19,7 @@ class CaixaController < ApplicationController
 
     def fechar
         @caixa = Caixa.new
-        if !@caixa.algumCaixaAberto (params[:id])
+        unless @caixa.algumCaixaAberto (params[:id])
             redirect_to root_url, notice: 'Nao existe nenhum caixa aberto.'
         else
             @caixa = @caixa.getCaixaAberto (params[:id])

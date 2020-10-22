@@ -3,7 +3,7 @@ class UsuariosController < ApplicationController
   before_action :logado, unless: [:new, :create]
 
   def logado
-    if !Usuario.checar_usuario_logado
+    unless Usuario.checar_usuario_logado
       redirect_to logins_path
     end
   end
