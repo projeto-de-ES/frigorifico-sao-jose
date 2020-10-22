@@ -3,7 +3,7 @@ class ProdutosController < ApplicationController
   before_action :logado
 
   def logado
-    if !Usuario.checar_usuario_logado
+    unless Usuario.checar_usuario_logado
       redirect_to logins_path
     end
   end
